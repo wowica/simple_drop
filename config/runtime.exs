@@ -81,3 +81,7 @@ if config_env() == :prod do
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 end
+
+config :simple_drop, SimpleDrop.BlockfrostClient,
+  project_id: System.fetch_env!("BLOCKFROST_PROJECT_ID"),
+  base_url: System.fetch_env!("BLOCKFROST_BASE_URL")
