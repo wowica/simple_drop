@@ -17,7 +17,8 @@ defmodule SimpleDropWeb.Router do
   scope "/", SimpleDropWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
+    live "/", ClaimsLive
   end
 
   # Other scopes may use custom stacks.

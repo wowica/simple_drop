@@ -32,3 +32,5 @@ simple_drop-*.tar
 npm-debug.log
 /assets/node_modules/
 
+.env
+.DS_Store

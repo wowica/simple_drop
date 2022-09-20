@@ -62,7 +62,8 @@ config :simple_drop, SimpleDropWeb.Endpoint,
       ~r"lib/simple_drop_web/(live|views)/.*(ex)$",
       ~r"lib/simple_drop_web/templates/.*(eex)$"
     ]
-  ]
+  ],
+  server: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
