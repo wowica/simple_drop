@@ -9,14 +9,14 @@ defmodule SimpleDrop.BlockfrostClient do
 
   plug Tesla.Middleware.JSON
 
-  def is_address_delegator(address) do
+  def is_address_delegator(base_address) do
     case delegators() do
       {:ok, %{body: delegators}} ->
         all_stake_keys =
           delegators
           |> Enum.map(&Map.get(&1, "address"))
 
-        {:ok, %{body: body}} = address_info(address)
+        {:ok, %{body: body}} = address_info(base_address)
         Enum.member?(all_stake_keys, body["stake_address"])
 
       _ ->
@@ -24,8 +24,8 @@ defmodule SimpleDrop.BlockfrostClient do
     end
   end
 
-  def address_info(address) do
-    get("addresses/#{address}")
+  def address_info(base_address) do
+    get("addresses/#{base_address}")
   end
 
   def delegators() do

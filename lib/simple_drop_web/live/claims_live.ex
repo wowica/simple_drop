@@ -4,7 +4,7 @@ defmodule SimpleDropWeb.ClaimsLive do
   def mount(_, _, socket) do
     socket =
       assign(socket,
-        stake_key: nil,
+        address: nil,
         is_delegated: nil,
         is_checking_rewards: false,
         has_checked_rewards: false
@@ -29,11 +29,11 @@ defmodule SimpleDropWeb.ClaimsLive do
         <% end %>
       <% else %>
         <form style="width: 500px"
-          phx-change="banana"
+          phx-change="set-address"
           autocomplete="off"
           phx-submit="save">
 
-          <input  name="stake-key" type="text" />
+          <input  name="address" type="text" />
           <button type="submit" phx-disable-with="Saving...">Check</button>
         </form>
       <% end %>
@@ -41,8 +41,8 @@ defmodule SimpleDropWeb.ClaimsLive do
     """
   end
 
-  def handle_event("banana", %{"stake-key" => stake_key}, socket) do
-    socket = assign(socket, :stake_key, stake_key)
+  def handle_event("set-address", %{"address" => address}, socket) do
+    socket = assign(socket, :address, address)
     {:noreply, socket}
   end
 
@@ -54,8 +54,8 @@ defmodule SimpleDropWeb.ClaimsLive do
   end
 
   def handle_info(:check_rewards, socket) do
-    stake_key = socket.assigns.stake_key
-    is_delegated = check_presence_of_delegator(stake_key)
+    address = socket.assigns.address
+    is_delegated = check_presence_of_delegator(address)
 
     socket =
       assign(socket,
@@ -67,7 +67,7 @@ defmodule SimpleDropWeb.ClaimsLive do
     {:noreply, socket}
   end
 
-  defp check_presence_of_delegator(address) do
-    SimpleDrop.BlockfrostClient.is_address_delegator(address)
+  defp check_presence_of_delegator(base_address) do
+    SimpleDrop.BlockfrostClient.is_address_delegator(base_address)
   end
 end
