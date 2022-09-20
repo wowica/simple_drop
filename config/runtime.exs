@@ -84,4 +84,4 @@ end
 
 config :simple_drop, SimpleDrop.BlockfrostClient,
   project_id: System.fetch_env!("BLOCKFROST_PROJECT_ID"),
-  base_url: System.fetch_env!("BLOCKFROST_BASE_URL")
+  base_url: System.get_env("BLOCKFROST_BASE_URL", "https://cardano-preview.blockfrost.io/api/v0/")
