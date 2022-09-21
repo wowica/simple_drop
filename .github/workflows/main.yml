@@ -6,6 +6,8 @@ env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
   deploy:
+      # Does not run on forks of this repo
+      if: github.repository == 'wowica/simple_drop'
       name: Deploy app
       runs-on: ubuntu-latest
       steps:
