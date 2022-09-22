@@ -13,6 +13,12 @@ config :simple_drop, SimpleDrop.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
+is_ci = System.get_env("IS_CI")
+
+if is_ci do
+  config :simple_drop, SimpleDrop.Repo, hostname: "postgres"
+end
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :simple_drop, SimpleDropWeb.Endpoint,
