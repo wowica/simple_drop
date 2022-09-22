@@ -83,5 +83,9 @@ if config_env() == :prod do
 end
 
 config :simple_drop, SimpleDrop.BlockfrostClient,
-  project_id: System.fetch_env!("BLOCKFROST_PROJECT_ID"),
+  project_id: System.get_env("BLOCKFROST_PROJECT_ID", nil),
   base_url: System.get_env("BLOCKFROST_BASE_URL", "https://cardano-preview.blockfrost.io/api/v0/")
+
+config :simple_drop,
+       SimpleDropWeb.Endpoint,
+       events_auth: System.get_env("EVENTS_AUTH", "user:pass")
