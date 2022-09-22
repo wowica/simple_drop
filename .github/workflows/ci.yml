@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore: main
 
+env:
+  IS_CI: "true"
+
 jobs:
   test:
     runs-on: ubuntu-latest
