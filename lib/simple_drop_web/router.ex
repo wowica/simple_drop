@@ -12,13 +12,19 @@ defmodule SimpleDropWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug SimpleDropWeb.Plugs.Auth
   end
 
   scope "/", SimpleDropWeb do
     pipe_through :browser
 
-    # get "/", PageController, :index
     live "/", ClaimsLive
+  end
+
+  scope "/events", SimpleDropWeb do
+    pipe_through :api
+
+    post "/", EventsController, :create
   end
 
   # Other scopes may use custom stacks.

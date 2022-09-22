@@ -1,9 +1,12 @@
 name: Fly Deploy
+
 on:
   push:
     branches: [main]
+
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
 jobs:
   deploy:
       # Does not run on forks of this repo
