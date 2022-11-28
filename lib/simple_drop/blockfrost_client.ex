@@ -30,7 +30,11 @@ defmodule SimpleDrop.BlockfrostClient do
 
   def delegators() do
     # Hardcoded to Preview Jungle
-    get("/pools/pool1lu942x5chr8uc9zjzltkrm8m2q7raqyuhsw8xplcg0sn77r9jzt/delegators")
+    get("/pools/#{pool_id()}/delegators")
+  end
+
+  defp pool_id do
+    Application.get_env(:simple_drop, SimpleDrop.BlockfrostClient)[:pool_id]
   end
 
   def base_url() do
