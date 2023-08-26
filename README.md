@@ -2,8 +2,6 @@
 
 A Simple Reward system for Cardano written in Phoenix Live View
 
-https://simple-drop.fly.dev/
-
 ![](docs/screenshot.png)
 
 Use the following delegator address as an example:
